@@ -1,0 +1,10 @@
+---
+- name: Restart mongod process
+  hosts: all
+  tasks:
+  - name: Display all facts
+    debug:
+      var: ansible_facts
+  - name: Verify mongo status
+    command: "systemctl stop mongod"
+    when: (ansible_facts["distribution"] == "OracleLinux")
